@@ -9,13 +9,14 @@ import {
   Pressable,
   Alert,
 } from "react-native";
-import AppLogo from '../LoginViews/AppLogo';
-import AppTitle from "../LoginViews/AppTitle";
-import Email from "../LoginViews/Email";
-import Password from "../LoginViews/Password";
-import ForgotPassword from "../LoginViews/ForgotPassword";
-import LoginButton from "../LoginViews/LoginButton";
-import SignupButton from "../LoginViews/SignupButton";
+import loginStyle from '../ProjectStyles/LoginStyle'
+import AppLogo from '../components/LoginComponents/AppLogo';
+import AppTitle from "../components/LoginComponents/AppTitle";
+import Email from "../components/LoginComponents/Email";
+import Password from "../components/LoginComponents/Password";
+import ForgotPassword from "../components/LoginComponents/ForgotPassword";
+import LoginButton from "../components/LoginComponents/LoginButton";
+import SignupButton from "../components/LoginComponents/SignupButton";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from '@react-navigation/native'
 import axios from "axios";
@@ -46,6 +47,7 @@ const LoginScreen = () => {
       email: email,
       password: password,
     }
+    console.log("User data before sending the request:", user); // Add this line for debugging
     const serverIP = "192.168.100.25"
 
     axios
@@ -64,7 +66,7 @@ const LoginScreen = () => {
 
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: "white", alignItems: "center" }}
+      style={loginStyle.loginScreenSafeArea}
     >
       <AppLogo/>
       <KeyboardAvoidingView>

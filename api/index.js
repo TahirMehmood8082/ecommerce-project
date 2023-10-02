@@ -65,7 +65,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
 app.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    console.log(`Index Register method: Name: ${name}, Email: ${email}, Password: ${password}`)
     // Check if the email is already registered
     const existingUser = await User.findOne({ email });
     if (existingUser) {

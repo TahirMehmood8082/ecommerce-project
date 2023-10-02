@@ -13,19 +13,19 @@ import React, { useState } from "react";
 import axios from 'axios'
 import { MaterialIcons, AntDesign, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import RegisterImage from '../RegisterViews/registerImage'
-import RegisterTitle from '../RegisterViews/registerTitle'
-import Name from '../RegisterViews/registerName'
-import Email from '../RegisterViews/registerEmail'
-import Password from '../RegisterViews/registerPassword'
-import ForgotPassword from '../RegisterViews/registerForgotPassword'
-import RegisterButton from "../RegisterViews/registerButton";
-import RegisterAlreadyAccount from '../RegisterViews/registerAlreadyAccount'
+import RegisterImage from '../components/RegisterComponents/registerImage'
+import RegisterTitle from '../components/RegisterComponents/registerTitle'
+import Name from '../components/RegisterComponents/registerName'
+import Email from '../components/RegisterComponents/registerEmail'
+import Password from '../components/RegisterComponents/registerPassword'
+import ForgotPassword from '../components/RegisterComponents/registerForgotPassword'
+import RegisterButton from "../components/RegisterComponents/registerButton";
+import RegisterAlreadyAccount from '../components/RegisterComponents/registerAlreadyAccount'
 
 const RegisterScreen = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const navigation = useNavigation();
   const handleRegister = () =>{
     const user = {
@@ -33,9 +33,12 @@ const RegisterScreen = () => {
       email: email,
       password: password,
     }
+    console.log(`handleRegister: name: ${name}, email: ${email}, password: ${password}`);
+    console.log(`handleRegister: User parsing: ${user.name} : ${user.email} : ${user.password}`); // Add this line for debugging
+    const serverIP = "192.168.100.25"
     //send & post request to the backend API
     axios
-      .post("http://localhost:8000/register", user)
+      .post(`http://${serverIP}:8000/register`, user)
       .then((respose)=>{
         console.log(respose)
         Alert.alert(
@@ -62,9 +65,9 @@ const RegisterScreen = () => {
       <KeyboardAvoidingView>
         <RegisterTitle/>
         <View style={{ marginTop: 70 }}>
-          <Name/>
-          <Email/>
-          <Password/>
+          <Name name={name} setName={setName}/>
+          <Email email={email} setEmail={setEmail}/>
+          <Password password={password} setPassword={setPassword}/>
         </View>
         <ForgotPassword/>
         <View style={{ marginTop: 80 }} />
