@@ -13,6 +13,8 @@ import { Entypo } from "@expo/vector-icons";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { UserType } from "../../UserContext";
+import addAddressStyle from '../ProjectStyles/AddAddressStyle'
+import SearchInAmazon from '../components/HomeComponents/SearchInAmazon'
 
 const AddAddressScreen = () => {
   const navigation = useNavigation();
@@ -43,55 +45,14 @@ const AddAddressScreen = () => {
   console.log("addresses", addresses);
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ marginTop: 50 }}>
-      <View
-        style={{
-          backgroundColor: "#00CED1",
-          padding: 10,
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Pressable
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginHorizontal: 7,
-            gap: 10,
-            backgroundColor: "white",
-            borderRadius: 3,
-            height: 38,
-            flex: 1,
-          }}
-        >
-          <AntDesign
-            style={{ paddingLeft: 10 }}
-            name="search1"
-            size={22}
-            color="black"
-          />
-          <TextInput placeholder="Search Amazon.in" />
-        </Pressable>
-
-        <Feather name="mic" size={24} color="black" />
-      </View>
+      <SearchInAmazon />
 
       <View style={{ padding: 10 }}>
-        <Text style={{ fontSize: 20, fontWeight: "bold" }}>Your Addresses</Text>
+        <Text style={addAddressStyle.yourAddressesTxt}>Your Addresses</Text>
 
         <Pressable
           onPress={() => navigation.navigate("Add")}
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginTop: 10,
-            borderColor: "#D0D0D0",
-            borderWidth: 1,
-            borderLeftWidth: 0,
-            borderRightWidth: 0,
-            paddingVertical: 7,
-            paddingHorizontal: 5,
-          }}
+          style={addAddressStyle.addANewAddressPress}
         >
           <Text>Add a new Address</Text>
           <MaterialIcons name="keyboard-arrow-right" size={24} color="black" />
@@ -100,88 +61,44 @@ const AddAddressScreen = () => {
         <Pressable>
           {/* all the added adresses */}
           {addresses?.map((item, index) => (
-            <Pressable
-              style={{
-                borderWidth: 1,
-                borderColor: "#D0D0D0",
-                padding: 10,
-                flexDirection: "column",
-                gap: 5,
-                marginVertical: 10,
-              }}
-            >
-              <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
-              >
-                <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+            <Pressable style={addAddressStyle.addedAddressesListPress}>
+              <View style={addAddressStyle.addedAddressesListNameView}>
+                <Text style={addAddressStyle.addedAddressesListNameTxt}>
                   {item?.name}
                 </Text>
                 <Entypo name="location-pin" size={24} color="red" />
               </View>
 
-              <Text style={{ fontSize: 15, color: "#181818" }}>
+              <Text style={addAddressStyle.addedAddressesListTxt}>
                 {item?.houseNo}, {item?.landmark}
               </Text>
 
-              <Text style={{ fontSize: 15, color: "#181818" }}>
+              <Text style={addAddressStyle.addedAddressesListTxt}>
                 {item?.street}
               </Text>
 
-              <Text style={{ fontSize: 15, color: "#181818" }}>
+              <Text style={addAddressStyle.addedAddressesListTxt}>
                 India, Bangalore
               </Text>
 
-              <Text style={{ fontSize: 15, color: "#181818" }}>
+              <Text style={addAddressStyle.addedAddressesListTxt}>
                 phone No : {item?.mobileNo}
               </Text>
-              <Text style={{ fontSize: 15, color: "#181818" }}>
+
+              <Text style={addAddressStyle.addedAddressesListTxt}>
                 pin code : {item?.postalCode}
               </Text>
 
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 10,
-                  marginTop: 7,
-                }}
-              >
-                <Pressable
-                  style={{
-                    backgroundColor: "#F5F5F5",
-                    paddingHorizontal: 10,
-                    paddingVertical: 6,
-                    borderRadius: 5,
-                    borderWidth: 0.9,
-                    borderColor: "#D0D0D0",
-                  }}
-                >
+              <View style={addAddressStyle.editRemoveDefaultView}>
+                <Pressable style={addAddressStyle.editRemoveDefaultPress}>
                   <Text>Edit</Text>
                 </Pressable>
 
-                <Pressable
-                  style={{
-                    backgroundColor: "#F5F5F5",
-                    paddingHorizontal: 10,
-                    paddingVertical: 6,
-                    borderRadius: 5,
-                    borderWidth: 0.9,
-                    borderColor: "#D0D0D0",
-                  }}
-                >
+                <Pressable style={addAddressStyle.editRemoveDefaultPress}>
                   <Text>Remove</Text>
                 </Pressable>
 
-                <Pressable
-                  style={{
-                    backgroundColor: "#F5F5F5",
-                    paddingHorizontal: 10,
-                    paddingVertical: 6,
-                    borderRadius: 5,
-                    borderWidth: 0.9,
-                    borderColor: "#D0D0D0",
-                  }}
-                >
+                <Pressable style={addAddressStyle.editRemoveDefaultPress}>
                   <Text>Set as Default</Text>
                 </Pressable>
               </View>
