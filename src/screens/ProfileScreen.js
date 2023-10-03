@@ -12,6 +12,7 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import axios from "axios";
 import { UserType } from "../../UserContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import profileStyle from '../ProjectStyles/ProfileStyle'
 
 const ProfileScreen = () => {
   const { userId, setUserId } = useContext(UserType);
@@ -26,23 +27,15 @@ const ProfileScreen = () => {
       },
       headerLeft: () => (
         <Image
-          style={{ width: 140, height: 120, resizeMode: "contain" }}
+          style={profileStyle.headerLeftImg}
           source={{
             uri: "https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c518.png",
           }}
         />
       ),
       headerRight: () => (
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            gap: 6,
-            marginRight: 12,
-          }}
-        >
+        <View style={profileStyle.headerRightMainView}>
           <Ionicons name="notifications-outline" size={24} color="black" />
-
           <AntDesign name="search1" size={24} color="black" />
         </View>
       ),
@@ -91,71 +84,31 @@ const ProfileScreen = () => {
   }, []);
   console.log("orders", orders);
   return (
-    <ScrollView style={{ padding: 10, flex: 1, backgroundColor: "white" }}>
-      <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+    <ScrollView style={profileStyle.mainScrollView}>
+      <Text style={profileStyle.welcomeTxt}>
         Welcome {user?.name}
       </Text>
 
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 10,
-          marginTop: 12,
-        }}
-      >
-        <Pressable
-          style={{
-            padding: 10,
-            backgroundColor: "#E0E0E0",
-            borderRadius: 25,
-            flex: 1,
-          }}
-        >
-          <Text style={{ textAlign: "center" }}>Your orders</Text>
+      <View style={profileStyle.rowMainView}>
+        <Pressable style={profileStyle.btnPress}>
+          <Text style={profileStyle.btnTxt}>Your orders</Text>
         </Pressable>
 
-        <Pressable
-          style={{
-            padding: 10,
-            backgroundColor: "#E0E0E0",
-            borderRadius: 25,
-            flex: 1,
-          }}
-        >
-          <Text style={{ textAlign: "center" }}>Your Account</Text>
+        <Pressable style={profileStyle.btnPress}>
+          <Text style={profileStyle.btnTxt}>Your Account</Text>
         </Pressable>
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 10,
-          marginTop: 12,
-        }}
-      >
-        <Pressable
-          style={{
-            padding: 10,
-            backgroundColor: "#E0E0E0",
-            borderRadius: 25,
-            flex: 1,
-          }}
-        >
-          <Text style={{ textAlign: "center" }}>Buy Again</Text>
+      <View style={profileStyle.rowMainView}>
+        <Pressable style={profileStyle.btnPress}>
+          <Text style={profileStyle.btnTxt}>Buy Again</Text>
         </Pressable>
 
         <Pressable
           onPress={logout}
-          style={{
-            padding: 10,
-            backgroundColor: "#E0E0E0",
-            borderRadius: 25,
-            flex: 1,
-          }}
+          style={profileStyle.btnPress}
         >
-          <Text style={{ textAlign: "center" }}>Logout</Text>
+          <Text style={profileStyle.btnTxt}>Logout</Text>
         </Pressable>
       </View>
 
@@ -165,16 +118,7 @@ const ProfileScreen = () => {
         ) : orders.length > 0 ? (
           orders.map((order) => (
             <Pressable
-              style={{
-                marginTop: 20,
-                padding: 15,
-                borderRadius: 8,
-                borderWidth: 1,
-                borderColor: "#d0d0d0",
-                marginHorizontal: 10,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              style={profileStyle.ordersListPress}
               key={order._id}
             >
               {/* Render the order information here */}
@@ -182,7 +126,7 @@ const ProfileScreen = () => {
                 <View style={{ marginVertical: 10 }} key={product._id}>
                   <Image
                     source={{ uri: product.image }}
-                    style={{ width: 100, height: 100, resizeMode: "contain" }}
+                    style={profileStyle.ordersListImg}
                   />
                 </View>
               ))}
