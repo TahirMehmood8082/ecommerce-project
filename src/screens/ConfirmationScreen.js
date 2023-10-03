@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cleanCart } from "../redux/CartReducer";
 import { useNavigation } from "@react-navigation/native";
 import RazorpayCheckout from "react-native-razorpay";
+import confirmationStyle from '../ProjectStyles/ConfirmationStyle'
 
 const ConfirmationScreen = () => {
   const steps = [
@@ -112,18 +113,11 @@ const ConfirmationScreen = () => {
     }
   };
   return (
-    <ScrollView style={{ marginTop: 55 }}>
-      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 40 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginBottom: 20,
-            justifyContent: "space-between",
-          }}
-        >
+    <ScrollView style={confirmationStyle.mainScrollView}>
+      <View style={confirmationStyle.subView}>
+        <View style={confirmationStyle.subSubView}>
           {steps?.map((step, index) => (
-            <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <View style={confirmationStyle.stepsMainView}>
               {index > 0 && (
                 <View
                   style={[
@@ -134,32 +128,25 @@ const ConfirmationScreen = () => {
               )}
               <View
                 style={[
-                  {
-                    width: 30,
-                    height: 30,
-                    borderRadius: 15,
-                    backgroundColor: "#ccc",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  },
+                  confirmationStyle.selectedStepView,
                   index < currentStep && { backgroundColor: "green" },
                 ]}
               >
                 {index < currentStep ? (
                   <Text
-                    style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
+                    style={confirmationStyle.selectedStepTxt}
                   >
                     &#10003;
                   </Text>
                 ) : (
                   <Text
-                    style={{ fontSize: 16, fontWeight: "bold", color: "white" }}
+                    style={confirmationStyle.selectedStepTxt}
                   >
                     {index + 1}
                   </Text>
                 )}
               </View>
-              <Text style={{ textAlign: "center", marginTop: 8 }}>
+              <Text style={confirmationStyle.selectedStepTitle}>
                 {step.title}
               </Text>
             </View>
@@ -168,25 +155,15 @@ const ConfirmationScreen = () => {
       </View>
 
       {currentStep == 0 && (
-        <View style={{ marginHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, fontWeight: "bold" }}>
+        <View style={confirmationStyle.currentStepsMainView}>
+          <Text style={confirmationStyle.selectDeliveryAddressTxt}>
             Select Delivery Address
           </Text>
 
           <Pressable>
             {addresses?.map((item, index) => (
               <Pressable
-                style={{
-                  borderWidth: 1,
-                  borderColor: "#D0D0D0",
-                  padding: 10,
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 5,
-                  paddingBottom: 17,
-                  marginVertical: 7,
-                  borderRadius: 6,
-                }}
+                style={confirmationStyle.addressesItemPress}
               >
                 {selectedAddress && selectedAddress._id === item?._id ? (
                   <FontAwesome5 name="dot-circle" size={20} color="#008397" />
@@ -200,82 +177,42 @@ const ConfirmationScreen = () => {
                 )}
 
                 <View style={{ marginLeft: 6 }}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 3,
-                    }}
-                  >
-                    <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+                  <View style={confirmationStyle.addressItemNameView}>
+                    <Text style={confirmationStyle.addressesItemNameTxt}>
                       {item?.name}
                     </Text>
                     <Entypo name="location-pin" size={24} color="red" />
                   </View>
 
-                  <Text style={{ fontSize: 15, color: "#181818" }}>
+                  <Text style={confirmationStyle.addressesItemsTxt}>
                     {item?.houseNo}, {item?.landmark}
                   </Text>
 
-                  <Text style={{ fontSize: 15, color: "#181818" }}>
+                  <Text style={confirmationStyle.addressesItemsTxt}>
                     {item?.street}
                   </Text>
 
-                  <Text style={{ fontSize: 15, color: "#181818" }}>
+                  <Text style={confirmationStyle.addressesItemsTxt}>
                     India, Bangalore
                   </Text>
 
-                  <Text style={{ fontSize: 15, color: "#181818" }}>
+                  <Text style={confirmationStyle.addressesItemsTxt}>
                     phone No : {item?.mobileNo}
                   </Text>
-                  <Text style={{ fontSize: 15, color: "#181818" }}>
+                  <Text style={confirmationStyle.addressesItemsTxt}>
                     pin code : {item?.postalCode}
                   </Text>
 
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 10,
-                      marginTop: 7,
-                    }}
-                  >
-                    <Pressable
-                      style={{
-                        backgroundColor: "#F5F5F5",
-                        paddingHorizontal: 10,
-                        paddingVertical: 6,
-                        borderRadius: 5,
-                        borderWidth: 0.9,
-                        borderColor: "#D0D0D0",
-                      }}
-                    >
+                  <View style={confirmationStyle.cardBtnsView}>
+                    <Pressable style={confirmationStyle.cardBtnsPress}>
                       <Text>Edit</Text>
                     </Pressable>
 
-                    <Pressable
-                      style={{
-                        backgroundColor: "#F5F5F5",
-                        paddingHorizontal: 10,
-                        paddingVertical: 6,
-                        borderRadius: 5,
-                        borderWidth: 0.9,
-                        borderColor: "#D0D0D0",
-                      }}
-                    >
+                    <Pressable style={confirmationStyle.cardBtnsPress}>
                       <Text>Remove</Text>
                     </Pressable>
 
-                    <Pressable
-                      style={{
-                        backgroundColor: "#F5F5F5",
-                        paddingHorizontal: 10,
-                        paddingVertical: 6,
-                        borderRadius: 5,
-                        borderWidth: 0.9,
-                        borderColor: "#D0D0D0",
-                      }}
-                    >
+                    <Pressable style={confirmationStyle.cardBtnsPress}>
                       <Text>Set as Default</Text>
                     </Pressable>
                   </View>
@@ -284,16 +221,9 @@ const ConfirmationScreen = () => {
                     {selectedAddress && selectedAddress._id === item?._id && (
                       <Pressable
                         onPress={() => setCurrentStep(1)}
-                        style={{
-                          backgroundColor: "#008397",
-                          padding: 10,
-                          borderRadius: 20,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          marginTop: 10,
-                        }}
+                        style={confirmationStyle.deliverAddressBtnPress}
                       >
-                        <Text style={{ textAlign: "center", color: "white" }}>
+                        <Text style={confirmationStyle.deliverAddressBtnTxt}>
                           Deliver to this Address
                         </Text>
                       </Pressable>
@@ -307,23 +237,12 @@ const ConfirmationScreen = () => {
       )}
 
       {currentStep == 1 && (
-        <View style={{ marginHorizontal: 20 }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+        <View style={confirmationStyle.currentStepsMainView}>
+          <Text style={confirmationStyle.chooseDeliveryOptionsTxt}>
             Choose your delivery options
           </Text>
 
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "white",
-              padding: 8,
-              gap: 7,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              marginTop: 10,
-            }}
-          >
+          <View style={confirmationStyle.checkBoxView}>
             {option ? (
               <FontAwesome5 name="dot-circle" size={20} color="#008397" />
             ) : (
@@ -336,7 +255,7 @@ const ConfirmationScreen = () => {
             )}
 
             <Text style={{ flex: 1 }}>
-              <Text style={{ color: "green", fontWeight: "500" }}>
+              <Text style={confirmationStyle.deliveryTimeTxt}>
                 Tomorrow by 10pm
               </Text>{" "}
               - FREE delivery with your Prime membership
@@ -345,14 +264,7 @@ const ConfirmationScreen = () => {
 
           <Pressable
             onPress={() => setCurrentStep(2)}
-            style={{
-              backgroundColor: "#FFC72C",
-              padding: 10,
-              borderRadius: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 15,
-            }}
+            style={confirmationStyle.continuePress}
           >
             <Text>Continue</Text>
           </Pressable>
@@ -360,23 +272,12 @@ const ConfirmationScreen = () => {
       )}
 
       {currentStep == 2 && (
-        <View style={{ marginHorizontal: 20 }}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+        <View style={confirmationStyle.currentStepsMainView}>
+          <Text style={confirmationStyle.paymentMethodTxt}>
             Select your payment Method
           </Text>
 
-          <View
-            style={{
-              backgroundColor: "white",
-              padding: 8,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 7,
-              marginTop: 12,
-            }}
-          >
+          <View style={confirmationStyle.cashOnDeliveryView}>
             {selectedOption === "cash" ? (
               <FontAwesome5 name="dot-circle" size={20} color="#008397" />
             ) : (
@@ -391,18 +292,7 @@ const ConfirmationScreen = () => {
             <Text>Cash on Delivery</Text>
           </View>
 
-          <View
-            style={{
-              backgroundColor: "white",
-              padding: 8,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 7,
-              marginTop: 12,
-            }}
-          >
+          <View style={confirmationStyle.creditDebitCardView}>
             {selectedOption === "card" ? (
               <FontAwesome5 name="dot-circle" size={20} color="#008397" />
             ) : (
@@ -430,14 +320,7 @@ const ConfirmationScreen = () => {
           </View>
           <Pressable
             onPress={() => setCurrentStep(3)}
-            style={{
-              backgroundColor: "#FFC72C",
-              padding: 10,
-              borderRadius: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 15,
-            }}
+            style={confirmationStyle.continuePress}
           >
             <Text>Continue</Text>
           </Pressable>
@@ -445,27 +328,15 @@ const ConfirmationScreen = () => {
       )}
 
       {currentStep === 3 && selectedOption === "cash" && (
-        <View style={{ marginHorizontal: 20 }}>
+        <View style={confirmationStyle.currentStepsMainView}>
           <Text style={{ fontSize: 20, fontWeight: "bold" }}>Order Now</Text>
 
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 8,
-              backgroundColor: "white",
-              padding: 8,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              marginTop: 10,
-            }}
-          >
+          <View style={confirmationStyle.paymentView}>
             <View>
-              <Text style={{ fontSize: 17, fontWeight: "bold" }}>
+              <Text style={confirmationStyle.savePercentTxt}>
                 Save 5% and never run out
               </Text>
-              <Text style={{ fontSize: 15, color: "gray", marginTop: 5 }}>
+              <Text style={confirmationStyle.autoDeliveryTxt}>
                 Turn on auto deliveries
               </Text>
             </View>
@@ -478,92 +349,47 @@ const ConfirmationScreen = () => {
           </View>
 
           <View
-            style={{
-              backgroundColor: "white",
-              padding: 8,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              marginTop: 10,
-            }}
+            style={confirmationStyle.shippingToView}
           >
             <Text>Shipping to {selectedAddress?.name}</Text>
 
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 8,
-              }}
-            >
-              <Text style={{ fontSize: 16, fontWeight: "500", color: "gray" }}>
+            <View style={confirmationStyle.itemsView} >
+              <Text style={confirmationStyle.itemsTxt}>
                 Items
               </Text>
-
-              <Text style={{ color: "gray", fontSize: 16 }}>₹{total}</Text>
+              <Text style={confirmationStyle.itemsTotalTxt}>₹{total}</Text>
             </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 8,
-              }}
-            >
-              <Text style={{ fontSize: 16, fontWeight: "500", color: "gray" }}>
+            <View style={confirmationStyle.deliveryView}>
+              <Text style={confirmationStyle.deliveryTxt}>
                 Delivery
               </Text>
 
-              <Text style={{ color: "gray", fontSize: 16 }}>₹0</Text>
+              <Text style={confirmationStyle.deliveryPrice}>₹0</Text>
             </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-                marginTop: 8,
-              }}
-            >
-              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+            <View style={confirmationStyle.orderTotalView}>
+              <Text style={confirmationStyle.orderTotalTxt}>
                 Order Total
               </Text>
 
-              <Text
-                style={{ color: "#C60C30", fontSize: 17, fontWeight: "bold" }}
-              >
+              <Text style={confirmationStyle.orderTotalPrice}>
                 ₹{total}
               </Text>
             </View>
           </View>
 
-          <View
-            style={{
-              backgroundColor: "white",
-              padding: 8,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              marginTop: 10,
-            }}
-          >
-            <Text style={{ fontSize: 16, color: "gray" }}>Pay With</Text>
+          <View style={confirmationStyle.payWithView}>
+            <Text style={confirmationStyle.payWithTxt}>Pay With</Text>
 
-            <Text style={{ fontSize: 16, fontWeight: "600", marginTop: 7 }}>
+            <Text style={confirmationStyle.PayOnDelivery}>
               Pay on delivery (Cash)
             </Text>
           </View>
 
           <Pressable
             onPress={handlePlaceOrder}
-            style={{
-              backgroundColor: "#FFC72C",
-              padding: 10,
-              borderRadius: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 20,
-            }}
+            style={confirmationStyle.placeYourOrderPress}
           >
             <Text>Place your order</Text>
           </Pressable>

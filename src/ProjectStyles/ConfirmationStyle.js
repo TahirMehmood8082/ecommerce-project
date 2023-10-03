@@ -1,11 +1,243 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  btn: {
-    
+  mainScrollView: {
+    marginTop: 55,
   },
-  btnTxt: {
-     
+  subView: {
+    flex: 1, 
+    paddingHorizontal: 20, 
+    paddingTop: 40,
+  },
+  subSubView: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 20,
+    justifyContent: "space-between",
+  },
+  selectedStepView: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: "#ccc",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  selectedStepTxt:{
+    fontSize: 16, 
+    fontWeight: "bold", 
+    color: "white",
+  },
+  selectedStepTitle:{
+    textAlign: "center", 
+    marginTop: 8,
+  },
+  stepsMainView:{
+    justifyContent: "center", 
+    alignItems: "center",
+  },
+  currentStepsMainView: {
+    marginHorizontal: 20,
+  },
+  selectDeliveryAddressTxt: {
+    fontSize: 16, 
+    fontWeight: "bold", 
+  },
+  addressesItemPress: {
+    borderWidth: 1,
+    borderColor: "#D0D0D0",
+    padding: 10,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 5,
+    paddingBottom: 17,
+    marginVertical: 7,
+    borderRadius: 6,
+  },
+  addressItemNameView: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3,
+  },
+  addressesItemNameTxt: {
+    fontSize: 15, 
+    fontWeight: "bold",
+  },
+  addressesItemsTxt: {
+    fontSize: 15, 
+    color: "#181818",
+  },
+  cardBtnsView: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginTop: 7,
+  },
+  cardBtnsPress: {
+    backgroundColor: "#F5F5F5",
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    borderRadius: 5,
+    borderWidth: 0.9,
+    borderColor: "#D0D0D0",
+  },
+  deliverAddressBtnPress: {
+    backgroundColor: "#008397",
+    padding: 10,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 10,
+  },
+  deliverAddressBtnTxt: {
+    textAlign: "center", 
+    color: "white",
+  },
+  chooseDeliveryOptionsTxt: {
+    fontSize: 20, 
+    fontWeight: "bold",
+  },
+  checkBoxView: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: 8,
+    gap: 7,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    marginTop: 10,
+  },
+  deliveryTimeTxt: {
+    color: "green", 
+    fontWeight: "500",
+  },
+  continuePress: {
+    backgroundColor: "#FFC72C",
+    padding: 10,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 15,
+  },
+  paymentMethodTxt: {
+    fontSize: 20, 
+    fontWeight: "bold",
+  },
+  cashOnDeliveryView: {
+    backgroundColor: "white",
+    padding: 8,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    marginTop: 12,
+  },
+  creditDebitCardView: {
+    backgroundColor: "white",
+    padding: 8,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 7,
+    marginTop: 12,
+  },
+  paymentView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 8,
+    backgroundColor: "white",
+    padding: 8,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    marginTop: 10,
+  },
+  savePercentTxt: {
+    fontSize: 17, 
+    fontWeight: "bold",
+  },
+  autoDeliveryTxt: {
+    fontSize: 15, 
+    color: "gray", 
+    marginTop: 5,
+  },
+  shippingToView: {
+    backgroundColor: "white",
+    padding: 8,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    marginTop: 10,
+  },
+  itemsView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 8,
+  },
+  itemsTxt: {
+    fontSize: 16, 
+    fontWeight: "500", 
+    color: "gray",
+  },
+  itemsTotalTxt: {
+    color: "gray", 
+    fontSize: 16,
+  },
+  deliveryView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 8,
+  },
+  deliveryTxt: {
+    fontSize: 16, 
+    fontWeight: "500", 
+    color: "gray",
+  },
+  deliveryPrice: {
+    color: "gray", 
+    fontSize: 16,
+  },
+  orderTotalView:{
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginTop: 8,
+  },
+  orderTotalTxt:{
+    fontSize: 20, 
+    fontWeight: "bold",
+  },
+  orderTotalPrice:{
+    color: "#C60C30", 
+    fontSize: 17, 
+    fontWeight: "bold",
+  },
+  payWithView:{
+    backgroundColor: "white",
+    padding: 8,
+    borderColor: "#D0D0D0",
+    borderWidth: 1,
+    marginTop: 10,
+  },
+  payWithTxt:{
+    fontSize: 16, 
+    color: "gray",
+  },
+  PayOnDelivery:{
+    fontSize: 16, 
+    fontWeight: "600", 
+    marginTop: 7,
+  },
+  placeYourOrderPress: {
+    backgroundColor: "#FFC72C",
+    padding: 10,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
   },
 });
 
