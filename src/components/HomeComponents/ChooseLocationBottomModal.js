@@ -4,8 +4,7 @@ import { BottomModal, SlideAnimation, ModalContent } from "react-native-modals";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-
-import LoginStyle from '../../ProjectStyles/LoginStyle';
+import homeStyle from '../../ProjectStyles/HomeStyle'
 
 const ChooseLocationBottomModal = (
   {
@@ -30,13 +29,13 @@ const ChooseLocationBottomModal = (
       visible={modalVisible}
       onTouchOutside={() => setModalVisible(!modalVisible)}
     >
-    <ModalContent style={{ width: "100%", height: 400 }}>
+    <ModalContent style={homeStyle.locationModalContent}>
       <View style={{ marginBottom: 8 }}>
-        <Text style={{ fontSize: 16, fontWeight: "500" }}>
+        <Text style={homeStyle.locationTxt}>
           Choose your Location
         </Text>
 
-        <Text style={{ marginTop: 5, fontSize: 16, color: "gray" }}>
+        <Text style={homeStyle.deliveryTxt}>
           Select a delivery location to see product availabilty and delivery
           options
         </Text>
@@ -47,24 +46,15 @@ const ChooseLocationBottomModal = (
         {addresses?.map((item, index) => (
           <Pressable
           onPress={() => setSelectedAddress(item)}
-            style={{
-              width: 140,
-              height: 140,
-              borderColor: "#D0D0D0",
-              borderWidth: 1,
-              padding: 10,
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 3,
-              marginRight: 15,
-              marginTop: 10,
-              backgroundColor:selectedAddress === item ? "#FBCEB1" : "white"
-            }}
+            style={
+              [
+                homeStyle.pickUpPointAlreadyAddress,
+                {backgroundColor:selectedAddress === item ? "#FBCEB1" : "white"}
+              ] 
+            }
           >
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 3 }}
-            >
-              <Text style={{ fontSize: 13, fontWeight: "bold" }}>
+            <View style={homeStyle.locationItemContainer}>
+              <Text style={homeStyle.locationItemName}>
                 {item?.name}
               </Text>
               <Entypo name="location-pin" size={24} color="red" />
@@ -72,20 +62,20 @@ const ChooseLocationBottomModal = (
 
             <Text
               numberOfLines={1}
-              style={{ width: 130, fontSize: 13, textAlign: "center" }}
+              style={homeStyle.locationItemHouseNo}
             >
               {item?.houseNo},{item?.landmark}
             </Text>
 
             <Text
               numberOfLines={1}
-              style={{ width: 130, fontSize: 13, textAlign: "center" }}
+              style={homeStyle.locationItemStreet}
             >
               {item?.street}
             </Text>
             <Text
               numberOfLines={1}
-              style={{ width: 130, fontSize: 13, textAlign: "center" }}
+              style={homeStyle.locationItemCity}
             >
               India, Bangalore
             </Text>
@@ -97,57 +87,36 @@ const ChooseLocationBottomModal = (
             setModalVisible(false);
             navigation.navigate("Address");
           }}
-          style={{
-            width: 140,
-            height: 140,
-            borderColor: "#D0D0D0",
-            marginTop: 10,
-            borderWidth: 1,
-            padding: 10,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={homeStyle.pickUpPointBox}
         >
-          <Text
-            style={{
-              textAlign: "center",
-              color: "#0066b2",
-              fontWeight: "500",
-            }}
-          >
+          <Text style={homeStyle.pickUpPointTxt}>
             Add an Address or pick-up point
           </Text>
         </Pressable>
       </ScrollView>
 
-      <View style={{ flexDirection: "column", gap: 7, marginBottom: 30 }}>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-        >
+      <View style={homeStyle.locationTypesMainView}>
+        <View style={homeStyle.locationTypesSubView}>
           <Entypo name="location-pin" size={22} color="#0066b2" />
-          <Text style={{ color: "#0066b2", fontWeight: "400" }}>
+          <Text style={homeStyle.locationTypesTxt}>
             Enter an Indian pincode
           </Text>
         </View>
 
-        <View
-          style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-        >
+        <View style={homeStyle.locationTypesSubView}>
           <Ionicons name="locate-sharp" size={22} color="#0066b2" />
-          <Text style={{ color: "#0066b2", fontWeight: "400" }}>
+          <Text style={homeStyle.locationTypesTxt}>
             Use My Currect location
           </Text>
         </View>
 
-        <View
-          style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-        >
+        <View style={homeStyle.locationTypesSubView}>
           <AntDesign name="earth" size={22} color="#0066b2" />
-
-          <Text style={{ color: "#0066b2", fontWeight: "400" }}>
+          <Text style={homeStyle.locationTypesTxt}>
             Deliver outside India
           </Text>
         </View>
+        
       </View>
     </ModalContent>
     </BottomModal>

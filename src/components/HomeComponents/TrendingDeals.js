@@ -1,23 +1,16 @@
 import { Text, View, Pressable, Image } from 'react-native'
 import React from 'react'
 import {deals} from '../../Constants/Constants'
-
-import LoginStyle from '../../ProjectStyles/LoginStyle';
+import homeStyle from '../../ProjectStyles/HomeStyle'
 
 const TrendingDeals = () => {
   return (
     <>
-      <Text style={{ padding: 10, fontSize: 18, fontWeight: "bold" }}>
+      <Text style={homeStyle.trendingDealsTxt}>
         Trending Deals of the week
       </Text>
 
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
+      <View style={ homeStyle.trendingDealsMainView } >
         {deals.map((item, index) => (
           <Pressable
             onPress={() =>
@@ -32,14 +25,9 @@ const TrendingDeals = () => {
                 item: item,
               })
             }
-            style={{
-              marginVertical: 10,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
+            style={homeStyle.trendingDealsItemPress}>
             <Image
-              style={{ width: 180, height: 180, resizeMode: "contain" }}
+              style={homeStyle.trendingDealsItemImg}
               source={{ uri: item?.image }}
             />
           </Pressable>

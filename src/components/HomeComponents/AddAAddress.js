@@ -2,21 +2,13 @@ import { Text, Pressable } from 'react-native'
 import React from 'react'
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
-
-
-import LoginStyle from '../../ProjectStyles/LoginStyle';
+import homeStyle from '../../ProjectStyles/HomeStyle'
 
 const AddAAddress = ({modalVisible, setModalVisible, selectedAddress }) => {
   return (
     <Pressable
       onPress={() => setModalVisible(!modalVisible)}
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 5,
-        padding: 10,
-        backgroundColor: "#AFEEEE",
-      }}
+      style={homeStyle.addAAddressLocationModal}
     >
     <Ionicons name="location-outline" size={24} color="black" />
 
@@ -26,7 +18,7 @@ const AddAAddress = ({modalVisible, setModalVisible, selectedAddress }) => {
         Deliver to {selectedAddress?.name} - {selectedAddress?.street}
       </Text>
       ) : (
-      <Text style={{ fontSize: 13, fontWeight: "500" }}>
+      <Text style={homeStyle.addAAddressTxt}>
           Add a Address
       </Text>
       )}
