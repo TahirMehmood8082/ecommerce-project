@@ -1,8 +1,7 @@
 import { ScrollView, Pressable, Image, Text } from 'react-native'
 import React from 'react'
 import {list} from '../../Constants/Constants'
-
-import LoginStyle from '../../ProjectStyles/LoginStyle';
+import homeStyle from '../../ProjectStyles/HomeStyle'
 
 const ProductsCategories = () => {
   return (
@@ -10,25 +9,13 @@ const ProductsCategories = () => {
       {list.map((item, index) => (
         <Pressable
           key={index}
-          style={{
-            margin: 10,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+          style={homeStyle.productCategoriesPress}>
           <Image
-            style={{ width: 50, height: 50, resizeMode: "contain" }}
+            style={homeStyle.productCategoriesImg}
             source={{ uri: item.image }}
           />
 
-          <Text
-            style={{
-              textAlign: "center",
-              fontSize: 12,
-              fontWeight: "500",
-              marginTop: 5,
-            }}
-          >
+          <Text style={homeStyle.productCategoriesTxt}>
             {item?.name}
           </Text>
         </Pressable>

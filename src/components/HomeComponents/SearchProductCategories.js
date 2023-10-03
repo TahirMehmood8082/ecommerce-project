@@ -2,8 +2,8 @@ import { View } from 'react-native'
 import React from 'react'
 import ProductItem from "../../components/ProductItem";
 import DropDownPicker from "react-native-dropdown-picker";
+import homeStyle from '../../ProjectStyles/HomeStyle'
 
-import LoginStyle from '../../ProjectStyles/LoginStyle';
 
 const SearchProductCategories = (
     {
@@ -19,19 +19,20 @@ const SearchProductCategories = (
   return (
     <>
       <View
-            style={{
-              marginHorizontal: 10,
-              marginTop: 20,
-              width: "45%",
-              marginBottom: open ? 50 : 15,
-            }}
+            style={
+              [
+                homeStyle.SearchProductCategoriesMainView,
+                {marginBottom: open ? 50 : 15}
+              ]
+            }
           >
             <DropDownPicker
-              style={{
-                borderColor: "#B7B7B7",
-                height: 30,
-                marginBottom: open ? 120 : 15,
-              }}
+              style={
+                [
+                  homeStyle.SearchProductCategoriesDropDownPicker,
+                  {marginBottom: open ? 120 : 15}
+                ] 
+              }
               open={open}
               value={category} //genderValue
               items={items}
@@ -47,13 +48,7 @@ const SearchProductCategories = (
             />
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-      >
+      <View  style={homeStyle.SearchProductCategoriesProducts}>
         {products
           ?.filter((item) => item.category === category)
           .map((item, index) => (
