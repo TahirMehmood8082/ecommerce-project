@@ -15,6 +15,9 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/CartReducer";
+import SearchInAmazon from '../components/HomeComponents/SearchInAmazon'
+import productInfoStyle from '../ProjectStyles/ProductInfoStyle'
+import commonStyle from '../ProjectStyles/CommonStyles'
 
 const ProductInfoScreen = () => {
   const route = useRoute();
@@ -34,40 +37,10 @@ const ProductInfoScreen = () => {
   console.log(cart);
   return (
     <ScrollView
-      style={{ marginTop: 55, flex: 1, backgroundColor: "white" }}
+      style={productInfoStyle.mainScrollView}
       showsVerticalScrollIndicator={false}
     >
-      <View
-        style={{
-          backgroundColor: "#00CED1",
-          padding: 10,
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Pressable
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-            marginHorizontal: 7,
-            gap: 10,
-            backgroundColor: "white",
-            borderRadius: 3,
-            height: 38,
-            flex: 1,
-          }}
-        >
-          <AntDesign
-            style={{ paddingLeft: 10 }}
-            name="search1"
-            size={22}
-            color="black"
-          />
-          <TextInput placeholder="Search Amazon.in" />
-        </Pressable>
-
-        <Feather name="mic" size={24} color="black" />
-      </View>
+      <SearchInAmazon />
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {route.params.carouselImages.map((item, index) => (
@@ -76,48 +49,14 @@ const ProductInfoScreen = () => {
             source={{ uri: item }}
             key={index}
           >
-            <View
-              style={{
-                padding: 20,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 20,
-                  backgroundColor: "#C60C30",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontWeight: "600",
-                    fontSize: 12,
-                  }}
-                >
+            <View style={commonStyle.spaceBetweenLeftRightItems}>
+              <View style={productInfoStyle.percentOffView}>
+                <Text style={productInfoStyle.percentOffTxt}>
                   20% off
                 </Text>
               </View>
 
-              <View
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 20,
-                  backgroundColor: "#E0E0E0",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  flexDirection: "row",
-                }}
-              >
+              <View style={productInfoStyle.socialShareView}>
                 <MaterialCommunityIcons
                   name="share-variant"
                   size={24}
@@ -126,93 +65,65 @@ const ProductInfoScreen = () => {
               </View>
             </View>
 
-            <View
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: "#E0E0E0",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "row",
-                marginTop: "auto",
-                marginLeft: 20,
-                marginBottom: 20,
-              }}
-            >
+            <View style={productInfoStyle.wishlistView}>
               <AntDesign name="hearto" size={24} color="black" />
             </View>
           </ImageBackground>
         ))}
       </ScrollView>
 
-      <View style={{ padding: 10 }}>
-        <Text style={{ fontSize: 15, fontWeight: "500" }}>
+      <View style={productInfoStyle.titlePriceView}>
+        <Text style={productInfoStyle.titleTxt}>
           {route?.params?.title}
         </Text>
 
-        <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 6 }}>
+        <Text style={productInfoStyle.priceTxt}>
           ₹{route?.params?.price}
         </Text>
       </View>
 
-      <Text style={{ height: 1, borderColor: "#D0D0D0", borderWidth: 1 }} />
+      <Text style={productInfoStyle.dividerLine} />
 
-      <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
+      <View style={productInfoStyle.colorSizeView}>
         <Text>Color: </Text>
-        <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+        <Text style={productInfoStyle.colorSizeTxt}>
           {route?.params?.color}
         </Text>
       </View>
 
-      <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
+      <View style={productInfoStyle.colorSizeView}>
         <Text>Size: </Text>
-        <Text style={{ fontSize: 15, fontWeight: "bold" }}>
+        <Text style={productInfoStyle.colorSizeTxt}>
           {route?.params?.size}
         </Text>
       </View>
 
-      <Text style={{ height: 1, borderColor: "#D0D0D0", borderWidth: 1 }} />
+      <Text style={productInfoStyle.dividerLine} />
 
       <View style={{ padding: 10 }}>
-        <Text style={{ fontSize: 15, fontWeight: "bold", marginVertical: 5 }}>
+        <Text style={productInfoStyle.totalPriceTxt}>
           Total : ₹{route.params.price}
         </Text>
-        <Text style={{ color: "#00CED1" }}>
+        <Text style={productInfoStyle.freeDelivery}>
           FREE delivery Tomorrow by 3 PM.Order within 10hrs 30 mins
         </Text>
 
-        <View
-          style={{
-            flexDirection: "row",
-            marginVertical: 5,
-            alignItems: "center",
-            gap: 5,
-          }}
-        >
+        <View style={productInfoStyle.locationView}>
           <Ionicons name="location" size={24} color="black" />
 
-          <Text style={{ fontSize: 15, fontWeight: "500" }}>
+          <Text style={productInfoStyle.locationTxt}>
             Deliver To Sujan - Bangalore 560019
           </Text>
         </View>
       </View>
 
-      <Text style={{ color: "green", marginHorizontal: 10, fontWeight: "500" }}>
+      <Text style={productInfoStyle.inStockTxt}>
         IN Stock
       </Text>
 
       <Pressable
         onPress={() => addItemToCart(route?.params?.item)}
-        style={{
-          backgroundColor: "#FFC72C",
-          padding: 10,
-          borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          marginHorizontal: 10,
-          marginVertical: 10,
-        }}
+        style={productInfoStyle.addToCartBtnPress}
       >
         {addedToCart ? (
           <View>
@@ -223,17 +134,7 @@ const ProductInfoScreen = () => {
         )}
       </Pressable>
 
-      <Pressable
-        style={{
-          backgroundColor: "#FFAC1C",
-          padding: 10,
-          borderRadius: 20,
-          justifyContent: "center",
-          alignItems: "center",
-          marginHorizontal: 10,
-          marginVertical: 10,
-        }}
-      >
+      <Pressable style={productInfoStyle.buyNowBtnPress}>
         <Text>Buy Now</Text>
       </Pressable>
     </ScrollView>

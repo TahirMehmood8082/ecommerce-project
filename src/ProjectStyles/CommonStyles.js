@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 15,
   },
+  spaceBetweenLeftRightItems: {
+    padding: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 });
 
 export default styles;
