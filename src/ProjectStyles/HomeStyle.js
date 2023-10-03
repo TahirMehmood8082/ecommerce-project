@@ -6,12 +6,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
   },
-  sectionsDividerLine: {
-    height: 1,
-    borderColor: "#D0D0D0",
-    borderWidth: 2,
-    marginTop: 15,
-  },
   addAAddressLocationModal: {
     flexDirection: "row",
     alignItems: "center",

@@ -34,6 +34,7 @@ import SearchProductCategories from '../components/HomeComponents/SearchProductC
 import ChooseLocationBottomModal from '../components/HomeComponents/ChooseLocationBottomModal'
 import { images } from '../Constants/Constants'
 import homeStyle from '../ProjectStyles/HomeStyle'
+import commonStyle from '../ProjectStyles/CommonStyles'
 
 const HomeScreen = () => {
  
@@ -119,9 +120,9 @@ const HomeScreen = () => {
             ImageComponentStyle={{ width: "100%" }}
           />
           <TrendingDeals/>
-          <Text style={homeStyle.sectionsDividerLine}/>
+          <Text style={commonStyle.sectionsDividerLine}/>
           <TodayDeals navigation={navigation}/>
-          <Text style={homeStyle.sectionsDividerLine}/>
+          <Text style={commonStyle.sectionsDividerLine}/>
           <SearchProductCategories 
             open={open}
             category={category}
