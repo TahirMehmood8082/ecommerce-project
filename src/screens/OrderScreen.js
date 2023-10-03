@@ -2,6 +2,7 @@ import { StyleSheet, Text, View,SafeAreaView } from "react-native";
 import React ,{useEffect} from "react";
 import LottieView from "lottie-react-native";
 import { useNavigation } from "@react-navigation/native";
+import orderStyle from '../ProjectStyles/OrderStyle'
 
 const OrderScreen = () => {
     const navigation = useNavigation()
@@ -11,40 +12,21 @@ const OrderScreen = () => {
         }, 1300);
       }, []);
   return (
-    <SafeAreaView style={{ backgroundColor: "white", flex: 1 }}>
+    <SafeAreaView style={orderStyle.mainSafeArea}>
       <LottieView
         source={require("../../assets/thumbs.json")}
         // ref={animation}
-        style={{
-          height: 260,
-          width: 300,
-          alignSelf: "center",
-          marginTop: 40,
-          justifyContent: "center",
-        }}
+        style={orderStyle.thumbsViewImg}
         autoPlay
         loop={false}
         speed={0.7}
       />
-      <Text
-        style={{
-          marginTop: 20,
-          fontSize: 19,
-          fontWeight: "600",
-          textAlign: "center",
-        }}
-      >
+      <Text style={orderStyle.orderRecievedTxt}>
         Your Order Has been Recieved
       </Text>
       <LottieView
         source={require("../../assets/sparkle.json")}
-        style={{
-          height: 300,
-          position: "absolute",
-          top: 100,
-          width: 300,
-          alignSelf: "center",
-        }}
+        style={orderStyle.sparkleViewImg}
         autoPlay
         loop={false}
         speed={0.7}
